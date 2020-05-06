@@ -81,13 +81,13 @@ var createScene = function() {
 let engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
 let scene = createScene();
 
-// if (BABYLON.VideoRecorder.IsSupported(engine)) {
-//     var recorder = new BABYLON.VideoRecorder(engine);
-//     recorder.startRecording();
-//     setTimeout(() => {
-//         recorder.stopRecording()
-//     }, 2000);
-// }
+if (BABYLON.VideoRecorder.IsSupported(engine)) {
+    var recorder = new BABYLON.VideoRecorder(engine);
+    recorder.startRecording();
+    setTimeout(() => {
+        recorder.stopRecording()
+    }, 2000);
+}
 
 engine.runRenderLoop(function () {
     if (scene) {
