@@ -64,7 +64,7 @@ var createScene = function() {
     BABYLON.VideoTexture.CreateFromWebCam(scene, function (videoTexture) {
         myVideo = videoTexture;
         shaderMaterial.setTexture("textureSampler", myVideo);
-    }, { width: 720, height: 1280 });
+    }, { width: 1280, height: 720 });
 
     scene.onBeforeRenderObservable.add(function () {
         if (myVideo !== undefined && isAssigned == false) {
@@ -81,13 +81,13 @@ var createScene = function() {
 let engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
 let scene = createScene();
 
-// if (BABYLON.VideoRecorder.IsSupported(engine)) {
-//     var recorder = new BABYLON.VideoRecorder(engine);
-//     recorder.startRecording();
-//     setTimeout(() => {
-//         recorder.stopRecording()
-//     }, 2000);
-// }
+if (BABYLON.VideoRecorder.IsSupported(engine)) {
+    var recorder = new BABYLON.VideoRecorder(engine);
+    recorder.startRecording();
+    setTimeout(() => {
+        recorder.stopRecording()
+    }, 2000);
+}
 
 engine.runRenderLoop(function () {
     if (scene) {
