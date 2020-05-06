@@ -64,7 +64,7 @@ var createScene = function() {
     BABYLON.VideoTexture.CreateFromWebCam(scene, function (videoTexture) {
         myVideo = videoTexture;
         shaderMaterial.setTexture("textureSampler", myVideo);
-    }, { width: 640, height: 480 });
+    }, { width: 1280, height: 720 });
 
     scene.onBeforeRenderObservable.add(function () {
         if (myVideo !== undefined && isAssigned == false) {
