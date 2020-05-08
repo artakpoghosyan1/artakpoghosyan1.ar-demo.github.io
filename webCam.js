@@ -1,8 +1,3 @@
-// You have to create a function called createScene. This function must return a BABYLON.Scene object
-// You can reference the following variables: scene, canvas
-// You must at least define a camera
-// More info here: https://doc.babylonjs.com/generals/The_Playground_Tutorial
-
 let canvas = document.getElementById("renderCanvas");
 
 var createScene = function() {
@@ -77,20 +72,3 @@ var createScene = function() {
 
     return scene;
 };
-
-let engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
-let scene = createScene();
-
-if (BABYLON.VideoRecorder.IsSupported(engine)) {
-    var recorder = new BABYLON.VideoRecorder(engine);
-    recorder.startRecording();
-    setTimeout(() => {
-        recorder.stopRecording()
-    }, 2000);
-}
-
-engine.runRenderLoop(function () {
-    if (scene) {
-        scene.render();
-    }
-});

@@ -1,0 +1,97 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.show {
+    display: block !important;
+}
+
+.container {
+    padding: 0 15px 15px 15px;
+}
+
+#renderCanvas {
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+}
+
+@media (min-width: 1024px) {
+    .container {
+        margin: 0 auto;
+        width: 70%;
+        height: 70%;
+    }
+}
+
+.action-buttons {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.action-buttons button {
+    border: 1px solid #8a8a8a;
+    color: #8a8a8a;
+    font-size: 16px;
+    padding: 8px 18px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.action-buttons button:focus {
+    outline: none;
+}
+
+.action-buttons button + button {
+    margin-left: 20px;
+}
+
+@keyframes recording {
+    0% {
+        transform: scale(1)
+    }
+
+    50% {
+        transform: scale(1.3)
+    }
+
+    100% {
+        transform: scale(1)
+    }
+}
+
+.circle {
+    width: 12px;
+    height: 12px;
+    background: red;
+    border-radius: 50%;
+    margin-left: 10px;
+    display: none;
+}
+
+.animate-circle {
+    display: inline-block;
+    animation: .8s recording infinite ease-in-out;
+}
+
+.video-wrapper {
+    text-align: center;
+    display: none;
+    margin-top: 30px
+}
+
+@media(min-width: 1024px) {
+    .video-wrapper {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.video {
+    display: block;
+    width: 100%;
+    max-height: 300px;
+    margin-bottom: 20px;
+    background-color: #000;
+}
