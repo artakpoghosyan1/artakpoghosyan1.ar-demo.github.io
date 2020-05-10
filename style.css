@@ -1,6 +1,7 @@
 html, body {
     margin: 0;
     padding: 0;
+    height: 100%
 }
 
 body {
@@ -19,7 +20,11 @@ button:focus {
 
 .canvas-wrapper {
     position: relative;
-    height: 100vh;
+}
+
+.container, .canvas-wrapper {
+    height: 100%;
+
 }
 
 #renderCanvas {
