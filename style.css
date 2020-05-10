@@ -3,12 +3,23 @@ html, body {
     padding: 0;
 }
 
-.show {
-    display: block !important;
+body {
+    font-family: sans-serif;
 }
 
-.container {
-    padding: 0 15px 15px 15px;
+button {
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+button:focus {
+    outline: none;
+}
+
+.canvas-wrapper {
+    position: relative;
+    height: 80vh;
 }
 
 #renderCanvas {
@@ -25,19 +36,72 @@ html, body {
     }
 }
 
-.action-buttons {
-    margin-top: 50px;
-    text-align: center;
+.button {
+    padding: 10px 25px;
+    border-radius: 3px;
+    border: 1px solid #ababab;
+    cursor: pointer;
+    font-size: 25px;
 }
 
-.action-buttons button {
-    border: 1px solid #8a8a8a;
-    color: #8a8a8a;
-    font-size: 16px;
-    padding: 8px 18px;
-    cursor: pointer;
-    border-radius: 5px;
+.button + .button {
+    margin-left: 20px;
 }
+
+@keyframes progress {
+    from {
+        stroke-dashoffset: 339.292;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+
+.video-loader {
+    width: 120px;
+    height: 120px;
+    transform: rotate(-90deg);
+}
+
+.video-loader__progress {
+    animation-fill-mode: forwards;
+    animation-duration:  2s;
+}
+
+.recording .video-loader__progress {
+    animation-name: progress;
+}
+
+.start {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-60px, -60px);
+    z-index: 1;
+    cursor: pointer;
+}
+
+/*.circle {*/
+/*    width: calc(100% + 20px);*/
+/*    height: calc(100% + 20px);*/
+/*    border: 1px solid;*/
+/*    border-radius: 50%;*/
+/*    position: absolute;*/
+/*    left: -11px;*/
+/*    top: -11px;*/
+/*    z-index: -1;*/
+/*}*/
+
+/*.circle:after {*/
+/*    content: '';*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    background-color: red;*/
+/*}*/
 
 .action-buttons button:focus {
     outline: none;
@@ -61,15 +125,6 @@ html, body {
     }
 }
 
-.circle {
-    width: 12px;
-    height: 12px;
-    background: red;
-    border-radius: 50%;
-    margin-left: 10px;
-    display: none;
-}
-
 .animate-circle {
     display: inline-block;
     animation: .8s recording infinite ease-in-out;
@@ -77,8 +132,19 @@ html, body {
 
 .video-wrapper {
     text-align: center;
-    display: none;
-    margin-top: 30px
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: 1s all;
+}
+
+.show {
+    visibility: visible;
+    opacity: 1;
 }
 
 @media(min-width: 1024px) {
@@ -91,7 +157,10 @@ html, body {
 .video {
     display: block;
     width: 100%;
-    max-height: 300px;
-    margin-bottom: 20px;
+    height: 100%;
     background-color: #000;
+}
+
+.video-btns {
+    margin-top: 20px;
 }

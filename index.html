@@ -20,15 +20,21 @@
     <div class="container">
         <div class="canvas-wrapper">
             <canvas id="renderCanvas"></canvas>
-        </div>
-
-        <div class="action-buttons">
-            <button id="start" class="start">Start recording <span class="circle"></span></button>
-            <button id="stop" class="stop">Stop recording</button>
+            <button id="start" class="start">
+                <svg class="video-loader" id="video-loader">
+                    <circle cx="60" cy="60" r="50" fill="none" stroke="#e6e6e6" stroke-width="7" />
+                    <circle id="progress" class="video-loader__progress" cx="60" cy="60" r="50" fill="none" stroke="#f77a52" stroke-width="7" stroke-dasharray="339.292" stroke-dashoffset="339.292" />
+                    <circle cx="60" cy="60" r="40" fill="#f77a52" stroke="#f77a52" stroke-dashoffset="135.717" />
+                </svg>
+            </button>
 
             <div id="video-wrapper" class="video-wrapper">
-                <video src="" id="video" class="video" autoplay></video>
-                <button id="play" class="play">Play</button>
+                <video src="#" id="video" class="video" autoplay></video>
+
+                <div class="video-btns">
+                    <button id="retry" class="button">Retry</button>
+                    <button id="ok" class="button">Ok</button>
+                </div>
             </div>
         </div>
     </div>
