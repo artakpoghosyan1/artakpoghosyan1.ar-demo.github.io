@@ -4,6 +4,7 @@ const retry = document.getElementById('retry');
 const ok = document.getElementById('ok');
 const video = document.getElementById('video');
 const videoWrapper = document.getElementById('video-wrapper');
+const share = document.getElementById('share');
 
 const engine = new BABYLON.Engine(canvas, true, {preserveDrawingBuffer: true, stencil: true});
 const scene = createScene();
@@ -42,13 +43,16 @@ start.addEventListener('click', function () {
 retry.addEventListener('click', function () {
     videoWrapper.classList.remove('show');
     loader.classList.remove('recording');
+    share.classList.remove('show-share')
 });
 
-// play.addEventListener('click', function () {
-//     const url = localStorage.getItem('video');
-//
-//     video.src = JSON.parse(url)
-// });
+ok.addEventListener('click', function () {
+    if(share.classList.contains('show-share')) {
+        share.classList.remove('show-share')
+    } else {
+        share.classList.add('show-share')
+    }
+});
 
 engine.runRenderLoop(function () {
     if (scene) {
