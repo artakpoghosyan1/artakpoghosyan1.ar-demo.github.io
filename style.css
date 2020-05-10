@@ -20,7 +20,7 @@ button:focus {
 .canvas-wrapper {
     position: relative;
     height: 100vh;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 #renderCanvas {
