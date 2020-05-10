@@ -27,8 +27,27 @@ var createScene = function() {
 
         "uniform sampler2D textureSampler;\r\n" +
 
-        "void main(void) {\r\n" +
-        "    gl_FragColor = texture2D(textureSampler, vUV);\r\n" +
+        "float band(float t, float start, float end, float blur){\r\n"+
+        "   float step1 = smoothstep(start - blur, start + blur, t);\r\n"+
+        "   float step2 = smoothstep(end + blur, end - blur, t);\r\n"+
+        "   return min(step1, step2);\r\n"+
+        "}\r\n"+
+
+        "void main(void) {\r\n"+
+
+        "    float num = 3.0;\r\n"+
+        "    vec2 uv = vUV;\r\n"+
+        "   float offset = 1./num;\r\n"+
+        "   float crop = 0.2;\r\n"+
+        "   float feather = 0.1;\r\n"+
+        "   vec4 color = vec4(0);\r\n"+
+        "   for (float i = 0.; i < num; i ++) {\r\n"+
+        "       float xOffset = fract(uv.x - i * offset + crop + 1.3);\r\n"+
+        "       float bleed = band(xOffset, crop, 1. - crop, feather);\r\n"+
+        "       color += texture(textureSampler, vec2(xOffset,uv.y)) * bleed;\r\n"+
+        "   }\r\n"+
+        "   color.a = 1.;\r\n"+
+        "   gl_FragColor = color;\r\n"+
         "}\r\n";
 
     var myVideo;
@@ -38,7 +57,6 @@ var createScene = function() {
 
     var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 1, -10), scene);
     camera.setTarget(new BABYLON.Vector3(0, 1, 0));
-    camera.attachControl(canvas, true);
 
     var plane1 = BABYLON.Mesh.CreatePlane("plane1", 7, scene);
     plane1.rotation.z = Math.PI;
