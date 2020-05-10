@@ -40,19 +40,19 @@ start.addEventListener('click', function () {
     }
 });
 
-retry.addEventListener('click', function () {
-    videoWrapper.classList.remove('show');
-    loader.classList.remove('recording');
-    share.classList.remove('show-share')
-});
-
-ok.addEventListener('click', function () {
-    if(share.classList.contains('show-share')) {
-        share.classList.remove('show-share')
-    } else {
-        share.classList.add('show-share')
-    }
-});
+// retry.addEventListener('click', function () {
+//     videoWrapper.classList.remove('show');
+//     loader.classList.remove('recording');
+//     share.classList.remove('show-share')
+// });
+//
+// ok.addEventListener('click', function () {
+//     if(share.classList.contains('show-share')) {
+//         share.classList.remove('show-share')
+//     } else {
+//         share.classList.add('show-share')
+//     }
+// });
 
 engine.runRenderLoop(function () {
     if (scene) {
