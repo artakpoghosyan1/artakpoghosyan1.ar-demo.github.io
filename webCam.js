@@ -1,6 +1,5 @@
 let canvas = document.getElementById("renderCanvas");
 
-
 var createScene = function() {
     BABYLON.Effect.ShadersStore["customVertexShader"] = "\r\n" +
         "precision highp float;\r\n" +
@@ -55,7 +54,6 @@ var createScene = function() {
     var isAssigned = false;
 
     var scene = new BABYLON.Scene(engine);
-    scene.clearColor = new BABYLON.Color3(0.0, 0.0, 0.0);
 
     var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 1, -10), scene);
     camera.setTarget(new BABYLON.Vector3(0, 1, 0));
@@ -63,8 +61,6 @@ var createScene = function() {
     var plane1 = BABYLON.Mesh.CreatePlane("plane1", 7, scene);
     plane1.rotation.z = Math.PI;
     plane1.position.y = 1;
-    let aspect = window.innerWidth/window.innerHeight;
-    plane1.scaling.x = aspect;
 
     var shaderMaterial = new BABYLON.ShaderMaterial("shader", scene,
         {
@@ -81,7 +77,7 @@ var createScene = function() {
     BABYLON.VideoTexture.CreateFromWebCam(scene, function (videoTexture) {
         myVideo = videoTexture;
         shaderMaterial.setTexture("textureSampler", myVideo);
-    }, { minWidth: 1280, minHeight: 720, maxWidth: 1280, maxHeight: 720, aspectRatio: 1.7777777778});
+    }, { width: 720, height: 1280 });
 
     scene.onBeforeRenderObservable.add(function () {
         if (myVideo !== undefined && isAssigned == false) {
