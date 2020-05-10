@@ -1,8 +1,4 @@
 let canvas = document.getElementById("renderCanvas");
-const position = {
-    width: window.innerWidth,
-    height: window.innerHeight
-};
 
 var createScene = function() {
     BABYLON.Effect.ShadersStore["customVertexShader"] = "\r\n" +
@@ -19,12 +15,7 @@ var createScene = function() {
         "varying vec2 vUV;\r\n" +
 
         "void main(void) {\r\n" +
-
-        "   vec3 newPos = position;\r\n" +
-        "   newPos.y *= 2.5;\r\n" +
-        "   newPos.y *= -1.0;\r\n" +
-
-        "    gl_Position = vec4(newPos, 1.0);\r\n" +
+        "    gl_Position = worldViewProjection * vec4(position, 1.0);\r\n" +
 
         "    vUV = uv;\r\n" +
         "}\r\n";
