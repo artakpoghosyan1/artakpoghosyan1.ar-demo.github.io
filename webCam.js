@@ -36,14 +36,15 @@ var createScene = function() {
 
         "void main(void) {\r\n"+
 
-        "    float num = 1.0;\r\n"+
+        "    float num = 2.0;\r\n"+
         "    vec2 uv = vUV;\r\n"+
         "   float offset = 1./num;\r\n"+
         "   float crop = 0.2;\r\n"+
         "   float feather = 0.1;\r\n"+
+        "   float time = 0.1;\r\n"+
         "   vec4 color = vec4(0);\r\n"+
         "   for (float i = 0.; i < num; i ++) {\r\n"+
-        "       float xOffset = fract(uv.x - i * offset + crop);\r\n"+
+        "       float xOffset = fract(uv.x - i * offset + crop + time);\r\n"+
         "       float bleed = band(xOffset, crop, 1. - crop, feather);\r\n"+
         "       color += texture(textureSampler, vec2(xOffset,uv.y)) * bleed;\r\n"+
         "   }\r\n"+
@@ -63,16 +64,16 @@ var createScene = function() {
     var height = canvas.offsetHeight
     if (width/height > height/width) {
         camera.fov = Math.PI/1.71
+        let aspect = 1.77778;
     } else {
         camera.fov = Math.PI/1.71
+        let aspect = 0.5625;
     }
-    console.log(width,height)
     var plane1 = BABYLON.Mesh.CreatePlane("plane1", 7, scene);
     plane1.rotation.z = Math.PI;
     plane1.position.z = -2.35;
     camera.setTarget(BABYLON.Vector3.Zero());
 
-    let aspect = 0.5625;
     plane1.scaling.x = aspect;
 
     var shaderMaterial = new BABYLON.ShaderMaterial("shader", scene,
