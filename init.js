@@ -24,7 +24,7 @@ start.addEventListener('click', function () {
         videoWrapper.classList.remove('show');
 
         loader.classList.add('recording');
-        recorder.startRecording(null).then(function (blob) {
+        recorder.startRecording().then(function (blob) {
             const newBlob = new Blob([blob]);
             const url = URL.createObjectURL(newBlob);
             video.src = url;
