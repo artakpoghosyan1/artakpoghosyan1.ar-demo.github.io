@@ -85,18 +85,20 @@ var createScene = function() {
         });
 
     let time = 1.0;
+    time.toPrecision(5)
     setInterval(() => {
-        time += 0.005;
+        time += 0.001;
         shaderMaterial.setFloat('time', time.toPrecision(5))
-    }, 1000/60);
+    }, 1);
 
     shaderMaterial.backFaceCulling = false;
+    shaderMaterial.setFloat("time", time)
 
     // Create our video texture
     BABYLON.VideoTexture.CreateFromWebCam(scene, function (videoTexture) {
         myVideo = videoTexture;
         shaderMaterial.setTexture("textureSampler", myVideo);
-    }, { minWidth: 1280, minHeight: 720, maxWidth: 1280, maxHeight: 720, aspectRatio: 1.7777777778});
+    }, { minWidth: 1280, minHeight: 720, maxWidth: 1280, maxHeight: 720, aspectRatio: 1.7777777778, frameRate: 60});
 
     scene.onBeforeRenderObservable.add(function () {
         if (myVideo !== undefined && isAssigned == false) {
