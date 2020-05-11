@@ -1,12 +1,5 @@
 let canvas = document.getElementById("renderCanvas");
 
-let time = 1.0;
-
-setInterval(increase, 1000);
-
-function increase() {
-    time += 1.0/60.0;
-}
 
 var createScene = function() {
     BABYLON.Effect.ShadersStore["customVertexShader"] = "\r\n" +
@@ -34,6 +27,7 @@ var createScene = function() {
         "varying vec2 vUV;\r\n" +
 
         "uniform sampler2D textureSampler;\r\n" +
+        "uniform float time;\r\n" +
 
         "float band(float t, float start, float end, float blur){\r\n"+
         "   float step1 = smoothstep(start - blur, start + blur, t);\r\n"+
@@ -48,10 +42,9 @@ var createScene = function() {
         "   float offset = 1./num;\r\n"+
         "   float crop = 0.2;\r\n"+
         "   float feather = 0.1;\r\n"+
-        "   float time = " + time.toFixed(3) + ";\r\n"+
         "   vec4 color = vec4(0);\r\n"+
         "   for (float i = 0.; i < num; i ++) {\r\n"+
-        "       float xOffset = fract(uv.x - i * offset + crop + float(time));\r\n"+
+        "       float xOffset = fract(uv.x - i * offset + crop + time);\r\n"+
         "       float bleed = band(xOffset, crop, 1. - crop, feather);\r\n"+
         "       color += texture(textureSampler, vec2(xOffset,uv.y)) * bleed;\r\n"+
         "   }\r\n"+
@@ -90,6 +83,13 @@ var createScene = function() {
             attributes: ["position", "normal", "uv"],
             uniforms: ["world", "worldView", "worldViewProjection", "view", "projection"]
         });
+
+    let time = 1.0;
+    setInterval(() => {
+        time += 1.0/60.0;
+        shaderMaterial.setFloat('time', time * 0.1)
+    }, 1000/60);
+
     shaderMaterial.backFaceCulling = false;
 
     // Create our video texture
