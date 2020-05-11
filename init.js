@@ -11,7 +11,7 @@ const scene = createScene();
 
 function videoRecorder() {
     if (BABYLON.VideoRecorder.IsSupported(engine)) {
-        return new BABYLON.VideoRecorder(engine);
+        return new BABYLON.VideoRecorder(engine, {fps: 30});
     }
 
     return null
@@ -27,7 +27,7 @@ start.addEventListener('click', function () {
         recorder.startRecording(null).then(function (blob) {
             const newBlob = new Blob([blob]);
             const url = URL.createObjectURL(newBlob);
-            video.src = url
+            video.src = url;
         });
 
         setTimeout(() => {
