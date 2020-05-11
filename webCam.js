@@ -86,9 +86,9 @@ var createScene = function() {
 
     let time = 1.0;
     setInterval(() => {
-        time += 1.0/60.0 * 0.05;
+        time += 0.005;
         shaderMaterial.setFloat('time', time.toPrecision(5))
-    }, 1000/60*0.05);
+    }, 1000/60);
 
     shaderMaterial.backFaceCulling = false;
 
