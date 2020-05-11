@@ -99,7 +99,7 @@ var createScene = function() {
     BABYLON.VideoTexture.CreateFromWebCam(scene, function (videoTexture) {
         myVideo = videoTexture;
         shaderMaterial.setTexture("textureSampler", myVideo);
-    }, { minWidth: 1280, minHeight: 720, maxWidth: 1280, maxHeight: 720, aspectRatio: 1.7777777778, frameRate: 30});
+    }, { minWidth: 1280, minHeight: 720, maxWidth: 1280, maxHeight: 720, aspectRatio: 1.7777777778, frameRate: 60, facingMode: { exact: "user" }});
 
     scene.onBeforeRenderObservable.add(function () {
         if (myVideo !== undefined && isAssigned == false) {
