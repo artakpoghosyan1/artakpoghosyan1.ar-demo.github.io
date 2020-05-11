@@ -65,7 +65,7 @@ var createScene = function() {
     plane1.position.z = -2.35;
     camera.setTarget(BABYLON.Vector3.Zero());
 
-    let aspect = 1.77778;
+    let aspect = 0.5625;
     plane1.scaling.x = aspect;
 
     var shaderMaterial = new BABYLON.ShaderMaterial("shader", scene,
