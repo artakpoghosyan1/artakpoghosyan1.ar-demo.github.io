@@ -70,6 +70,7 @@ var createScene = function() {
     var plane1 = BABYLON.Mesh.CreatePlane("plane1", 7, scene);
     plane1.rotation.z = Math.PI;
     plane1.position.z = -2.35;
+    plane1.rotation.y = Math.PI;
     camera.setTarget(BABYLON.Vector3.Zero());
 
     plane1.scaling.x = aspect;
