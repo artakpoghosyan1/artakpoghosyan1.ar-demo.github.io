@@ -36,7 +36,7 @@ start.addEventListener('click', function () {
                 // loader.classList.remove('recording');
                 videoWrapper.classList.add('show');
             }
-        }, 2000);
+        }, 5000);
     }
 });
 
