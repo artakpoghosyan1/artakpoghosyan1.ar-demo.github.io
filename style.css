@@ -81,7 +81,7 @@ button:focus {
 
 .video-loader__progress {
     animation-fill-mode: forwards;
-    animation-duration:  2s;
+    animation-duration:  5s;
 }
 
 .recording .video-loader__progress {
@@ -133,7 +133,7 @@ button:focus {
     width: 100%;
     height: 100%;
     z-index: 1;
-    transition: 1s all;
+    transition: .7s all;
 }
 
 .show,
@@ -171,8 +171,19 @@ button:focus {
     z-index: 12;
     text-align: center;
     transition: .5s all;
+    transform: scale(2.5);
+}
+
+@media(min-width: 1024px) {
+    .share {
+        transform: none;
+    }
+
+    .show-share {
+        top: 25px;
+    }
 }
 
 .show-share {
-    top: 25px;
+    top: 60px;
 }
