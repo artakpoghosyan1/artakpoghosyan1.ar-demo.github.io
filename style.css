@@ -46,12 +46,12 @@ button:focus {
     cursor: pointer;
     background-size: contain;
     background-repeat: no-repeat;
-    height: 70px;
-    width: 70px;
+    height: 100px;
+    width: 100px;
 }
 
 .button + .button {
-    margin-left: 20px;
+    margin-left: 50px;
 }
 
 .retry {
