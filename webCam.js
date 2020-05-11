@@ -47,6 +47,7 @@ var createScene = function() {
         "       float bleed = band(xOffset, crop, 1. - crop, feather);\r\n"+
         "       color += texture(textureSampler, vec2(xOffset,uv.y)) * bleed;\r\n"+
         "   }\r\n"+
+        "   color.rgb = pow(mix(color.rgb, vec3(dot(color.rgb, vec3(0.2125, 0.7154, 0.0721))), vec3(0.8)), vec3(1.3));\r\n" +
         "   color.a = 1.;\r\n"+
         "   gl_FragColor = color;\r\n"+
         "}\r\n";
@@ -58,8 +59,14 @@ var createScene = function() {
     scene.clearColor = new BABYLON.Color3(0.0, 0.0, 0.0);
 
     var camera = new BABYLON.UniversalCamera("camera1", new BABYLON.Vector3(0, 0, 0), scene);
-    camera.fov = Math.PI/1.61
-
+    var width = canvas.offsetWidth
+    var height = canvas.offsetHeight
+    if (width/height > height/width) {
+        camera.fov = Math.PI/1.71
+    } else {
+        camera.fov = Math.PI/1.71
+    }
+    console.log(width,height)
     var plane1 = BABYLON.Mesh.CreatePlane("plane1", 7, scene);
     plane1.rotation.z = Math.PI;
     plane1.position.z = -2.35;
