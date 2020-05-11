@@ -40,7 +40,7 @@ var createScene = function() {
         "    float num = 2.0;\r\n"+
         "    vec2 uv = vUV;\r\n"+
         "   float offset = 1./num;\r\n"+
-        "   float crop = 0.2;\r\n"+
+        "   float crop = 0.1;\r\n"+
         "   float feather = 0.1;\r\n"+
         "   vec4 color = vec4(0);\r\n"+
         "   for (float i = 0.; i < num; i ++) {\r\n"+
@@ -99,7 +99,7 @@ var createScene = function() {
     BABYLON.VideoTexture.CreateFromWebCam(scene, function (videoTexture) {
         myVideo = videoTexture;
         shaderMaterial.setTexture("textureSampler", myVideo);
-    }, { minWidth: 1280, minHeight: 720, maxWidth: 1280, maxHeight: 720, aspectRatio: 1.7777777778, frameRate: 60, facingMode: { exact: "user" }});
+    }, { minWidth: 1280, minHeight: 720, maxWidth: 1280, maxHeight: 720, aspectRatio: 1.7777777778, frameRate: 30});
 
     scene.onBeforeRenderObservable.add(function () {
         if (myVideo !== undefined && isAssigned == false) {
