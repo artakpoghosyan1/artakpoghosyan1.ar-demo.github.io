@@ -57,13 +57,17 @@ var createScene = function() {
     var scene = new BABYLON.Scene(engine);
     scene.clearColor = new BABYLON.Color3(0.0, 0.0, 0.0);
 
-    var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 1, -10), scene);
-    camera.setTarget(new BABYLON.Vector3(0, 1, 0));
+    var camera = new BABYLON.UniversalCamera("camera1", new BABYLON.Vector3(0, 0, 0), scene);
+    camera.fov = Math.PI/1.61
+    let viewWidth = window.innerWidth
+    let viewHeight = window.innerHeight
 
     var plane1 = BABYLON.Mesh.CreatePlane("plane1", 7, scene);
     plane1.rotation.z = Math.PI;
-    plane1.position.y = 1;
-    let aspect = window.innerWidth/window.innerHeight;
+    plane1.position.z = -2.35;
+    camera.setTarget(BABYLON.Vector3.Zero());
+
+    let aspect = viewWidth/viewHeight;
     plane1.scaling.x = aspect;
 
     var shaderMaterial = new BABYLON.ShaderMaterial("shader", scene,
